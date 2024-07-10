@@ -1,4 +1,5 @@
 import { Model } from "./Model";
+import { View } from "./View";
 // Controller /// View and Model communication
 export const Controller = {
   playGame: () => {},
@@ -29,4 +30,8 @@ export const Controller = {
       return false;
     }
   },
+
+  addClickEvent: View.squares.forEach((square) => {
+    square.addEventListener("click", () => {});
+  }),
 };
