@@ -1,4 +1,4 @@
-import { Controller } from "./Controller";
+import { Controller } from "./Controller.js";
 
 // Model / Game state / Data ///////////////////////
 export const Model = {

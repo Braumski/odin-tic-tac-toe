@@ -1,8 +1,9 @@
-import { Model } from "./Model";
-import { View } from "./View";
+import { Model } from "./Model.js";
+import { View } from "./View.js";
 // Controller /// View and Model communication
 export const Controller = {
   playGame: () => {},
+  whoseTurn: "Player 1",
 
   winConditions: [
     // Rows
@@ -31,7 +32,15 @@ export const Controller = {
     }
   },
 
-  addClickEvent: View.squares.forEach((square) => {
-    square.addEventListener("click", () => {});
-  }),
+  addClickEvent: function () {
+    View.board.addEventListener("click", (event) => {
+      if (this.whoseTurn === "Player 1") {
+        event.target.innerText = Model.player1.letter;
+        this.whoseTurn = "Player 2";
+      } else if (this.whoseTurn === "Player 2") {
+        event.target.innerText = Model.player2.letter;
+        this.whoseTurn = "Player 1";
+      }
+    });
+  },
 };

@@ -9,3 +9,7 @@ While doing research for this lesson on things such as seperation of concerns, p
 - https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/
 
 - https://www.sitepoint.com/mvc-design-pattern-javascript/
+
+## Event Delegation and Bubbling
+
+Previously, I would add event listeners to every individual child object in for loops, but after doing some research I read that adding a single event listener to the common parent and then selecting the event target is much better for performance. This article helped me clarify that. https://www.freecodecamp.org/news/event-delegation-javascript/

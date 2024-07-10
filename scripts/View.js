@@ -1,6 +1,7 @@
 // View // Dom and interface
 
 export const View = {
+  board: document.getElementById("board"),
   squares: [
     document.getElementById("block-1"),
     document.getElementById("block-2"),
