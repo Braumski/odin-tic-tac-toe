@@ -4,7 +4,7 @@ This lesson involves closures practice, and designing a programs foundations bef
 
 ## Model-View-Controller
 
-While doing research for this lesson on things such as seperation of concerns, planning a project, and planning a programs structure, I ran into a design pattern called **Model View Controller** or MVC for short. I did a lot of watchign and reading on this idea and will share my resources here.
+While doing research for this lesson on things such as seperation of concerns, planning a project, and planning a programs structure, I ran into a design pattern called **Model View Controller** or MVC for short. I did a lot of reading on this idea and will share my resources here. Although MVC is more for huge codebases, I think I'll use it here anyways just to learn about it more. An MVC design pattern for such a simple project here will add a lot of boilerplate and complexity, but I'm just going to use this project to learn about MVC.
 
 - https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/
 

@@ -1,4 +1,6 @@
 function ticTacToe() {
+  // Model / Game state / Data ///////////////////////
+
   const gameBoard = ["", "", "", "", "", "", "", "", ""];
   const player1 = {
     letter: "X",
@@ -9,8 +11,6 @@ function ticTacToe() {
     letter: "O",
     name: "Player Two",
   };
-  const displayController = {};
-
   function checkWin(gameBoard) {
     const winConditions = [
       // Rows
@@ -41,6 +41,10 @@ function ticTacToe() {
     // refresh the game state
   }
 
+  // View / Rendering the game board and updating the UI /////////////////////////////////////
+  const displayController = {};
+
+  // Controller / Hanlding User Input and updating the model and view accordingly ///////////////////
   (function playGame() {
     function player1Turn() {}
   })(); // IIFE
