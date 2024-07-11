@@ -2,9 +2,6 @@ import { Model } from "./Model.js";
 import { View } from "./View.js";
 // Controller /// View and Model communication
 export const Controller = {
-  playGame: () => {},
-  whoseTurn: "Player 1",
-
   winConditions: [
     // Rows
     [0, 1, 2],
@@ -18,29 +15,57 @@ export const Controller = {
     [0, 4, 8],
     [2, 4, 6],
   ],
-  checkWin: () => {
-    for (let condition of winConditions) {
+  checkWin: function () {
+    for (const condition of this.winConditions) {
       const [a, b, c] = condition;
+      const gameBoard = Model.gameBoard;
       if (
         gameBoard[a] &&
         gameBoard[a] === gameBoard[b] &&
         gameBoard[a] === gameBoard[c]
       ) {
-        return true; // We have a win
+        document.querySelector(".overlay-text").style.visibility = "visible";
+        document.querySelector(".winner-overlay").style.visibility = "visible";
+        console.log(`${Model.whoseTurn} Wins!`);
+        return true;
       }
-      return false;
     }
+    console.log("No Victory Yet");
+    return false;
   },
 
-  addClickEvent: function () {
-    View.board.addEventListener("click", (event) => {
-      if (this.whoseTurn === "Player 1") {
-        event.target.innerText = Model.player1.letter;
-        this.whoseTurn = "Player 2";
-      } else if (this.whoseTurn === "Player 2") {
-        event.target.innerText = Model.player2.letter;
-        this.whoseTurn = "Player 1";
-      }
+  // TODO: This is where i was below
+  boardReset: function () {
+    This.view.squares.forEach((square) => {
+      square.innerText = "";
+    });
+    Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
+    Model.whoseTurn = "Player 1";
+  },
+
+  clickLogic: function () {
+    View.squares.forEach((square) => {
+      square.addEventListener("click", (event) => {
+        const squareId = event.target.id;
+        const squareNum = squareId[squareId.length - 1];
+        if (event.target.innerText === "") {
+          // ^ This just checks if the block is empty, if it isnt, nothing happens
+
+          if (Model.whoseTurn === "Player 1") {
+            Model.gameBoard.splice(squareNum - 1, 1, Model.player1.letter);
+            event.target.innerText = Model.player1.letter;
+            Model.whoseTurn = "Player 2";
+            // view;
+            this.checkWin();
+          } else if (Model.whoseTurn === "Player 2") {
+            Model.gameBoard.splice(squareNum - 1, 1, Model.player2.letter);
+            event.target.innerText = Model.player2.letter;
+            Model.whoseTurn = "Player 1";
+            this.checkWin();
+          }
+        }
+        console.log(Model);
+      });
     });
   },
 };

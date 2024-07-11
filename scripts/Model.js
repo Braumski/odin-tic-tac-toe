@@ -3,10 +3,10 @@ import { Controller } from "./Controller.js";
 // Model / Game state / Data ///////////////////////
 export const Model = {
   gameBoard: ["", "", "", "", "", "", "", "", ""],
+  whoseTurn: "Player 1",
   player1: {
     letter: "X",
     name: "Player One",
-    changeName() {},
   },
   player2: {
     letter: "O",

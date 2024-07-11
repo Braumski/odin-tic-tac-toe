@@ -4,13 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="./scripts/Controller.js"></script>
-    <script type="module" src="./scripts/Model.js"></script>
-    <script type="module" src="./scripts/View.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="scripts/App.js"></script>
 
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
+    <div class="winner-screen">
+      <div class="winner-overlay"></div>
+      <div class="overlay-text">
+        <div class="winner-text">Player X Wins!</div>
+        <button id="play-again">Play Again</button>
+      </div>
+    </div>
+
     <h1 id="player-turn">Player Turn</h1>
 
     <div class="board">
@@ -30,6 +42,5 @@
         <div id="block-9"></div>
       </div>
     </div>
-    <h1 id="player-wins">Player X WINS</h1>
   </body>
 </html>

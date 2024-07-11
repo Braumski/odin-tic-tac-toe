@@ -1,7 +1,7 @@
 // View // Dom and interface
 
 export const View = {
-  board: document.getElementById("board"),
+  board: document.querySelector(".board"),
   squares: [
     document.getElementById("block-1"),
     document.getElementById("block-2"),
@@ -13,4 +13,5 @@ export const View = {
     document.getElementById("block-8"),
     document.getElementById("block-9"),
   ],
+  playerTurn: document.getElementById("player-turn"),
 };

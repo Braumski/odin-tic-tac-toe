@@ -1,16 +1,23 @@
 *,
 *:after,
 *:before {
+  cursor: default;
+  user-select: none;
   box-sizing: border-box;
 }
 
 html {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background-color: rgb(33, 38, 80);
+}
+h1 {
+  font-weight: 400;
 }
 body {
   margin: 0;
@@ -30,8 +37,58 @@ body {
 }
 .board > div > div {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
   background-color: rgb(59, 74, 136);
   width: 125px;
   height: 125px;
   border-radius: 6px;
+}
+.winner-overlay,
+.overlay-text {
+  /* TODO: Make this visible on victory */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+.winner-overlay {
+  visibility: hidden;
+  opacity: 0.9;
+  background: #000;
+}
+
+.overlay-text {
+  visibility: hidden;
+
+  background: none;
+  opacity: 1;
+}
+.overlay-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.winner-text,
+#play-again {
+  color: white;
+}
+
+#play-again {
+  font-size: 28px;
+  font-weight: 600;
+  border: none;
+  color: rgb(195, 216, 219);
+  background-color: rgb(76, 110, 139);
+  width: 200px;
+  height: 55px;
+  border-radius: 12px;
+  cursor: pointer;
 }
