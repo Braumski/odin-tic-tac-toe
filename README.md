@@ -7,6 +7,7 @@ This lesson involves closures practice, and designing a programs foundations bef
 While doing research for this lesson on things such as seperation of concerns, planning a project, and planning a programs structure, I ran into a design pattern called **Model View Controller** or MVC for short. I did a lot of reading on this idea and will share my resources here. Although MVC is more for huge codebases, I think I'll use it here anyways just to learn about it more. An MVC design pattern for such a simple project here will add a lot of boilerplate and complexity, but I'm just going to use this project to learn about MVC.
 
 I don't think The Odin Projects creators intended a MVC pattern for this project, but they way they write their code seems to follow this pattern, a pattern I've never seen before. I've had trouble figuring ways to organize code on my previous projects so I'm going to give MVC a try for this project.
+**I'll be honest, I'm not even sure if I did MVC correctly.** It's hard to find resources that give concrete examples of how it should be written, I just took concepts and applied them with a lot of assumptions.
 
 - https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/
 
