@@ -27,11 +27,11 @@ export const Controller = {
         document.querySelector(".overlay-text").style.visibility = "visible";
         document.querySelector(".winner-overlay").style.visibility = "visible";
         console.log(`${Model.whoseTurn} Wins!`);
-        return true;
+        return (Model.isVictory = true);
       }
     }
     console.log("No Victory Yet");
-    return false;
+    return (Model.isVictory = false);
   },
 
   // TODO: This is where i was below
@@ -40,7 +40,7 @@ export const Controller = {
       square.innerText = "";
     });
     Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
-    Model.whoseTurn = "Player 1";
+    Model.isPlayer1Turn = !Model.isPlayer1Turn;
   },
 
   clickLogic: function () {
@@ -50,22 +50,19 @@ export const Controller = {
         const squareNum = squareId[squareId.length - 1];
         if (event.target.innerText === "") {
           // ^ This just checks if the block is empty, if it isnt, nothing happens
-
-          if (Model.whoseTurn === "Player 1") {
-            Model.gameBoard.splice(squareNum - 1, 1, Model.player1.letter);
-            event.target.innerText = Model.player1.letter;
-            Model.whoseTurn = "Player 2";
-            // view;
-            this.checkWin();
-          } else if (Model.whoseTurn === "Player 2") {
-            Model.gameBoard.splice(squareNum - 1, 1, Model.player2.letter);
-            event.target.innerText = Model.player2.letter;
-            Model.whoseTurn = "Player 1";
-            this.checkWin();
-          }
+          const currentPlayer = Model.isPlayer1Turn
+            ? Model.player1
+            : Model.player2;
+          Model.gameBoard.splice(squareNum - 1, 1, currentPlayer.letter);
+          event.target.innerText = currentPlayer.letter;
+          Model.isPlayer1Turn = !Model.isPlayer1Turn;
+          this.checkWin();
         }
         console.log(Model);
       });
     });
   },
 };
+
+// Modular clickLogic check
+function clickLogicEachPlayer() {}

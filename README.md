@@ -4,7 +4,7 @@ This lesson involves closures practice, and designing a programs foundations bef
 
 ## Model-View-Controller
 
-While doing research for this lesson on things such as seperation of concerns, planning a project, and planning a programs structure, I ran into a design pattern called <ins>**Model View Controller**</ins> or MVC for short. I did a lot of reading on this idea and will share my resources here. Although MVC is more for huge codebases, I think I'll use it here anyways just to learn about it more. An MVC design pattern for such a simple project here will add a lot of boilerplate and complexity, but I'm just going to use this project to learn about MVC.
+While doing research for this lesson on things such as seperation of concerns, planning a project, and planning a programs structure, I ran into a design pattern called **Model View Controller** or MVC for short. I did a lot of reading on this idea and will share my resources here. Although MVC is more for huge codebases, I think I'll use it here anyways just to learn about it more. An MVC design pattern for such a simple project here will add a lot of boilerplate and complexity, but I'm just going to use this project to learn about MVC.
 
 I don't think The Odin Projects creators intended a MVC pattern for this project, but they way they write their code seems to follow this pattern, a pattern I've never seen before. I've had trouble figuring ways to organize code on my previous projects so I'm going to give MVC a try for this project.
 **I'll be honest, I'm not even sure if I did MVC correctly.** It's hard to find resources that give concrete examples of how it should be written, I just took concepts and applied them with a lot of assumptions.
@@ -18,3 +18,33 @@ One thing I found very handy about this MVC design pattern is that console loggi
 ## Event Delegation and Bubbling
 
 Previously, I would add event listeners to every individual child object in forEach loops, but after doing some research I read that adding a single event listener to the common parent and then selecting the event target is much better for performance. This article helped me clarify that. https://www.freecodecamp.org/news/event-delegation-javascript/ I need to remember this in the future because I've looped event listeners many times and it's going to be a bad habit for me if I don't break it soon.
+
+## Using AI to reduce repetetive code (DRY)
+
+At one moment during the project, I had code that looked like this
+
+```javascript
+if (Model.isPlayer1Turn === true) {
+  Model.gameBoard.splice(squareNum - 1, 1, Model.player1.letter);
+  event.target.innerText = Model.player1.letter;
+  Model.isPlayer1Turn = !Model.isPlayer1Turn;
+  this.checkWin();
+} else if (Model.isPlayer1Turn === false) {
+  Model.gameBoard.splice(squareNum - 1, 1, Model.player2.letter);
+  event.target.innerText = Model.player2.letter;
+  Model.isPlayer1Turn = !Model.isPlayer1Turn;
+  this.checkWin();
+}
+```
+
+This felt repetetive, but I had trouble thinking of ways to reduce this code, so I asked an AI to reduce the repetition here and I really like the solution it came up with.
+
+```javascript
+const currentPlayer = Model.isPlayer1Turn ? Model.player1 : Model.player2;
+Model.gameBoard.splice(squareNum - 1, 1, currentPlayer.letter);
+event.target.innerText = currentPlayer.letter;
+Model.isPlayer1Turn = !Model.isPlayer1Turn;
+this.checkWin();
+```
+
+It created a new variable that checked whose turn it was, and then returned the exact data needed to make the code execute correctly no matter whose turn it was.
