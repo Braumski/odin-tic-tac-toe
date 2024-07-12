@@ -2,6 +2,38 @@ import { Model } from "./Model.js";
 import { View } from "./View.js";
 // Controller /// View and Model communication
 export const Controller = {
+  initializeGame: function () {
+    this.resetGame();
+    this.addBoardClickEvents();
+    this.addPlayAgainClickEvents();
+  },
+  resetGame: function () {
+    View.squares.forEach((square) => {
+      square.innerText = "";
+    });
+
+    Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
+    Model.isPlayer1Turn = true;
+    View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
+  },
+  addPlayAgainClickEvents: function () {},
+  addBoardClickEvents: function () {
+    View.squares.forEach((square) => {
+      square.addEventListener("click", (event) => {
+        const squareId = event.target.id;
+        const squareNum = squareId[squareId.length - 1];
+        if (event.target.innerText === "") {
+          // ^ This just checks if the block is empty, if it isnt, nothing happens
+          Model.gameBoard.splice(squareNum - 1, 1, Model.currentPlayer.letter);
+          event.target.innerText = Model.currentPlayer.letter;
+          View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
+          this.isWon();
+          Model.isPlayer1Turn = !Model.isPlayer1Turn;
+        }
+        console.log(Model);
+      });
+    });
+  },
   winConditions: [
     // Rows
     [0, 1, 2],
@@ -44,38 +76,5 @@ export const Controller = {
     } else {
       return Model.isVictory;
     }
-  },
-
-  initializeGame: function () {
-    this.resetGame();
-    this.addClickEvents();
-  },
-
-  resetGame: function () {
-    View.squares.forEach((square) => {
-      square.innerText = "";
-    });
-
-    Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
-    Model.isPlayer1Turn = true;
-    View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
-  },
-  addPlayAgainClickEvents: function () {},
-  addBoardClickEvents: function () {
-    View.squares.forEach((square) => {
-      square.addEventListener("click", (event) => {
-        const squareId = event.target.id;
-        const squareNum = squareId[squareId.length - 1];
-        if (event.target.innerText === "") {
-          // ^ This just checks if the block is empty, if it isnt, nothing happens
-          Model.gameBoard.splice(squareNum - 1, 1, Model.currentPlayer.letter);
-          event.target.innerText = Model.currentPlayer.letter;
-          View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
-          this.isWon();
-          Model.isPlayer1Turn = !Model.isPlayer1Turn;
-        }
-        console.log(Model);
-      });
-    });
   },
 };
