@@ -15,10 +15,6 @@ I don't think The Odin Projects creators intended a MVC pattern for this project
 
 One thing I found very handy about this MVC design pattern is that console logging all of my data is as simple as console.log(Model). It logs all of my held data in just a short line, I love it. When I see the word "Model" or "View" I know exactly the kind of action being taken. Again I understand that this is a verbose design pattern for a tic-tac-toe project, but I just used it to learn.
 
-## Event Delegation and Bubbling
-
-Previously, I would add event listeners to every individual child object in forEach loops, but after doing some research I read that adding a single event listener to the common parent and then selecting the event target is much better for performance. This article helped me clarify that. https://www.freecodecamp.org/news/event-delegation-javascript/ I need to remember this in the future because I've looped event listeners many times and it's going to be a bad habit for me if I don't break it soon.
-
 ## Using AI to reduce repetetive code (DRY)
 
 At one moment during the project, I had code that looked like this

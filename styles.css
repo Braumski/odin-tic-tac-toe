@@ -127,6 +127,7 @@ body {
 }
 #player-one-wins-text,
 #player-two-wins-text {
+  font-size: 18px;
   color: rgb(186, 186, 186);
 }
 
