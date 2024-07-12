@@ -8,14 +8,27 @@ export const Controller = {
     this.addPlayAgainClickEvent();
   },
 
+  overlayToggle: function () {
+    // If both the elements are hidden, make them visible and vice versa
+    if (
+      View.overlayContent.style.visibility === "hidden" &&
+      View.overlay.style.visibility === "hidden"
+    ) {
+      View.overlayContent.style.visibility = "visible";
+      View.overlay.style.visibility = "visible";
+    } else {
+      View.overlayContent.style.visibility = "hidden";
+      View.overlay.style.visibility = "hidden";
+    }
+  },
+
   resetGame: function () {
     View.squares.forEach((square) => {
       square.innerText = "";
     });
     Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
     Model.isPlayer1Turn = true;
-    View.overlayContent.style.visibility = "hidden";
-    View.overlay.style.visibility = "hidden";
+    this.overlayToggle();
     View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
   },
 
@@ -42,7 +55,7 @@ export const Controller = {
         const squareId = event.target.id;
         const squareNum = squareId[squareId.length - 1];
         if (event.target.innerText === "") {
-          // ^ This just checks if the block is empty, if it isnt, nothing happens
+          // Checks if the block is empty, if it isnt, nothing happens
           Model.gameBoard.splice(squareNum - 1, 1, Model.currentPlayer.letter);
           event.target.innerText = Model.currentPlayer.letter;
           const gameWon = this.isWon();
@@ -89,16 +102,14 @@ export const Controller = {
         gameBoard[a] === gameBoard[b] &&
         gameBoard[a] === gameBoard[c]
       ) {
-        View.overlayContent.style.visibility = "visible";
-        View.overlay.style.visibility = "visible";
+        this.overlayToggle();
         View.matchOutcomeText.innerText = `${Model.currentPlayer.name} Wins!`;
         return !Model.isVictory;
       }
     }
     if (this.isBoardFull() === true) {
       // Draw
-      View.overlayContent.style.visibility = "visible";
-      View.overlay.style.visibility = "visible";
+      this.overlayToggle();
       View.matchOutcomeText.innerText = "Draw";
     } else {
       return Model.isVictory;

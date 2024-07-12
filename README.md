@@ -48,3 +48,7 @@ this.checkWin();
 ```
 
 It created a new variable that checked whose turn it was, and then returned the exact data needed to make the code execute correctly no matter whose turn it was.
+
+### Footnote
+
+I spent way too much time on this project, but I'm happy with how it turned out.
