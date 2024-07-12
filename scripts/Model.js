@@ -1,5 +1,5 @@
 import { Controller } from "./Controller.js";
-
+import { View } from "./View.js";
 // Model / Game state / Data ///////////////////////
 export const Model = {
   winConditions: [

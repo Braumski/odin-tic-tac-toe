@@ -1,5 +1,5 @@
 // View // Dom and interface
-
+import { Model } from "./Model.js";
 export const View = {
   board: document.querySelector(".board"),
   squares: [
@@ -18,4 +18,11 @@ export const View = {
   overlay: document.querySelector(".winner-overlay"),
   overlayContent: document.querySelector(".overlay-content"),
   matchOutcomeText: document.getElementById("match-outcome-text"),
+  currentPlayerWinsNum: function () {
+    if (Model.isPlayer1Turn) {
+      return document.getElementById("player-one-wins-num");
+    } else {
+      return document.getElementById("player-two-wins-num");
+    }
+  },
 };

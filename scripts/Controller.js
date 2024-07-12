@@ -36,6 +36,10 @@ export const Controller = {
           event.target.innerText = Model.currentPlayer.letter;
           const gameWon = this.isWon();
           if (gameWon) {
+            // TODO: get this below to work
+            Model.currentPlayer.wins++;
+            const currPlayerWinsEle = View.currentPlayerWinsNum();
+            currPlayerWinsEle.innerText = Model.currentPlayer.wins;
             return gameWon;
           } else {
             Model.isPlayer1Turn = !Model.isPlayer1Turn;
@@ -47,20 +51,6 @@ export const Controller = {
     });
   },
 
-  winConditions: [
-    // Rows
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    // Columns
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    // Diagonals
-    [0, 4, 8],
-    [2, 4, 6],
-  ],
-
   isBoardFull: function () {
     return Model.gameBoard.every((square) => square === "X" || square === "O");
   },
@@ -71,7 +61,20 @@ export const Controller = {
     }
   },
   isWon: function () {
-    for (const condition of this.winConditions) {
+    const winConditions = [
+      // Rows
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      // Columns
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      // Diagonals
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (const condition of winConditions) {
       const [a, b, c] = condition;
       const gameBoard = Model.gameBoard;
       if (

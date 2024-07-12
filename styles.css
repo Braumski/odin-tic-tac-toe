@@ -130,7 +130,7 @@ body {
   color: rgb(186, 186, 186);
 }
 
-#player-one-wins-text > span,
-#player-two-wins-text > span {
+#player-one-wins-num,
+#player-two-wins-num {
   color: rgb(49, 149, 177);
 }
