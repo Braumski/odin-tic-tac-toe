@@ -25,6 +25,17 @@ export const Controller = {
     });
   },
 
+  countWin: function () {
+    Model.currentPlayer.wins++;
+    const currPlayerWinsEle = View.currentPlayerWinsNum();
+    currPlayerWinsEle.innerText = Model.currentPlayer.wins;
+  },
+
+  toggleTurn: function () {
+    Model.isPlayer1Turn = !Model.isPlayer1Turn;
+    View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
+  },
+
   addBoardClickEvents: function () {
     View.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
@@ -36,14 +47,10 @@ export const Controller = {
           event.target.innerText = Model.currentPlayer.letter;
           const gameWon = this.isWon();
           if (gameWon) {
-            // TODO: get this below to work
-            Model.currentPlayer.wins++;
-            const currPlayerWinsEle = View.currentPlayerWinsNum();
-            currPlayerWinsEle.innerText = Model.currentPlayer.wins;
+            this.countWin();
             return gameWon;
           } else {
-            Model.isPlayer1Turn = !Model.isPlayer1Turn;
-            View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
+            this.toggleTurn();
           }
         }
         console.log(Model);
