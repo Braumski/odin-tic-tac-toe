@@ -4,6 +4,7 @@
   cursor: default;
   user-select: none;
   box-sizing: border-box;
+  margin: 0;
 }
 
 html {
@@ -25,6 +26,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
 .board {
   display: flex;
@@ -47,7 +49,6 @@ body {
 }
 .winner-overlay,
 .overlay-content {
-  /* TODO: Make this visible on victory */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,10 +90,47 @@ body {
   font-size: 28px;
   font-weight: 600;
   border: none;
-  color: rgb(195, 216, 219);
+  color: rgb(255, 255, 255);
   background-color: rgb(76, 110, 139);
   width: 200px;
   height: 55px;
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
+}
+
+#play-again:hover {
+  background-color: rgb(63, 119, 169);
+}
+
+#play-again:active {
+  background-color: rgb(76, 110, 139);
+}
+
+#tally-board {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#name-change {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: rgb(186, 186, 186);
+  border-radius: 6px;
+  margin-top: 40px;
+  padding: 10px 30px 10px 30px;
+  background-color: rgb(23, 28, 49);
+}
+#player-one-wins-text,
+#player-two-wins-text {
+  color: rgb(186, 186, 186);
+}
+
+#player-one-wins-text > span,
+#player-two-wins-text > span {
+  color: rgb(49, 149, 177);
 }

@@ -5,18 +5,26 @@ export const Controller = {
   initializeGame: function () {
     this.resetGame();
     this.addBoardClickEvents();
-    this.addPlayAgainClickEvents();
+    this.addPlayAgainClickEvent();
   },
+
   resetGame: function () {
     View.squares.forEach((square) => {
       square.innerText = "";
     });
-
     Model.gameBoard = ["", "", "", "", "", "", "", "", ""];
     Model.isPlayer1Turn = true;
+    View.overlayContent.style.visibility = "hidden";
+    View.overlay.style.visibility = "hidden";
     View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
   },
-  addPlayAgainClickEvents: function () {},
+
+  addPlayAgainClickEvent: function () {
+    View.playAgain.addEventListener("click", () => {
+      this.resetGame();
+    });
+  },
+
   addBoardClickEvents: function () {
     View.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
@@ -26,14 +34,19 @@ export const Controller = {
           // ^ This just checks if the block is empty, if it isnt, nothing happens
           Model.gameBoard.splice(squareNum - 1, 1, Model.currentPlayer.letter);
           event.target.innerText = Model.currentPlayer.letter;
-          View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
-          this.isWon();
-          Model.isPlayer1Turn = !Model.isPlayer1Turn;
+          const gameWon = this.isWon();
+          if (gameWon) {
+            return gameWon;
+          } else {
+            Model.isPlayer1Turn = !Model.isPlayer1Turn;
+            View.playerTurn.innerText = `${Model.currentPlayer.name} ( ${Model.currentPlayer.letter} )'s turn`;
+          }
         }
         console.log(Model);
       });
     });
   },
+
   winConditions: [
     // Rows
     [0, 1, 2],
@@ -51,7 +64,12 @@ export const Controller = {
   isBoardFull: function () {
     return Model.gameBoard.every((square) => square === "X" || square === "O");
   },
-
+  addWin: function () {
+    if (Model.currentPlayer === "player1") {
+      Model.player1.wins++;
+      View;
+    }
+  },
   isWon: function () {
     for (const condition of this.winConditions) {
       const [a, b, c] = condition;
@@ -64,15 +82,14 @@ export const Controller = {
         View.overlayContent.style.visibility = "visible";
         View.overlay.style.visibility = "visible";
         View.matchOutcomeText.innerText = `${Model.currentPlayer.name} Wins!`;
-        console.log(`${Model.currentPlayer.name} Wins!`);
         return !Model.isVictory;
       }
     }
-    console.log("No Victory Yet");
     if (this.isBoardFull() === true) {
+      // Draw
       View.overlayContent.style.visibility = "visible";
       View.overlay.style.visibility = "visible";
-      View.matchOutcomeText.innerText = `Draw`;
+      View.matchOutcomeText.innerText = "Draw";
     } else {
       return Model.isVictory;
     }

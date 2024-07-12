@@ -24,10 +24,12 @@ export const Model = {
   player1: {
     letter: "X",
     name: "Player One",
+    wins: 0,
   },
   player2: {
     letter: "O",
     name: "Player Two",
+    wins: 0,
   },
 
   // display "player x wins"
