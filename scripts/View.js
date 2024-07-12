@@ -13,5 +13,9 @@ export const View = {
     document.getElementById("block-8"),
     document.getElementById("block-9"),
   ],
+  playAgain: document.getElementById("play-again"),
   playerTurn: document.getElementById("player-turn"),
+  overlay: document.querySelector(".winner-overlay"),
+  overlayContent: document.querySelector(".overlay-content"),
+  matchOutcomeText: document.getElementById("match-outcome-text"),
 };

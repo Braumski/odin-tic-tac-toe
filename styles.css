@@ -46,7 +46,7 @@ body {
   border-radius: 6px;
 }
 .winner-overlay,
-.overlay-text {
+.overlay-content {
   /* TODO: Make this visible on victory */
   display: flex;
   justify-content: center;
@@ -65,20 +65,24 @@ body {
   background: #000;
 }
 
-.overlay-text {
+.overlay-content {
   visibility: hidden;
 
   background: none;
   opacity: 1;
 }
-.overlay-text {
+.overlay-content {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.winner-text,
+#match-outcome-text,
 #play-again {
   color: white;
+}
+
+#match-outcome-text {
+  text-align: center;
 }
 
 #play-again {
