@@ -15,6 +15,10 @@ I don't think The Odin Projects creators intended a MVC pattern for this project
 
 One thing I found very handy about this MVC design pattern is that console logging all of my data is as simple as console.log(Model). It logs all of my held data in just a short line, I love it. When I see the word "Model" or "View" I know exactly the kind of action being taken. Again I understand that this is a verbose design pattern for a tic-tac-toe project, but I just used it to learn.
 
+### My MVC Model isn't correct
+
+Although I was close to writing MVC correctly, I left too much of my functionality inside the controller object. I had a misunderstanding that all functionality was left to the controller, when in reality, there's more to it than that. I think I will do another project implementing MVC more correctly because I love this design pattern.
+
 ## Using AI to reduce repetetive code (DRY)
 
 At one moment during the project, I had code that looked like this
